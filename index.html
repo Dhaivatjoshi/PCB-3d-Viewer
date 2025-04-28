@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D PCB Model Viewer</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #222;
+        }
+
+        model-viewer {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            background-color: #333;
+            position: relative;
+        }
+
+        /* Custom loading bar color */
+        model-viewer::part(progress-bar) {
+            background-color: #ff004f !important; /* Change progress bar color */
+        }
+
+        .reset-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+
+        .reset-btn {
+            width: 40px;
+            height: 40px;
+            background: url('https://cdn-icons-png.flaticon.com/512/61/61444.png') no-repeat center;
+            background-size: contain;
+            border: none;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            background-color: transparent;
+        }
+
+        .reset-btn:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <model-viewer 
+        id="pcbViewer"
+        src="pcb.gltf" 
+        alt="3D PCB Model" 
+        auto-rotate 
+        camera-controls 
+        shadow-intensity="1">
+        
+        <!-- Transparent Reset Button inside a container -->
+        <div class="reset-container">
+            <button class="reset-btn" onclick="resetView()"></button>
+        </div>
+
+    </model-viewer>
+
+    <script>
+        const viewer = document.getElementById("pcbViewer");
+
+        function resetView() {
+            viewer.cameraOrbit = "auto auto auto";
+            viewer.cameraTarget = "auto auto auto";
+        }
+    </script>
+
+</body>
+</html>
