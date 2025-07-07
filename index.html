@@ -12,7 +12,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #222;
+            background-color: #000000;
         }
 
         model-viewer {
@@ -23,9 +23,15 @@
             position: relative;
         }
 
-        /* Custom loading bar color */
-        model-viewer::part(progress-bar) {
-            background-color: #ff004f !important; /* Change progress bar color */
+        
+        model-viewer{
+            --poster-color: #333; /* Background color when loading */
+            --progress-bar-color: #ff004f; /* Custom progress bar color */
+            --progress-bar-height: 4px; /* Height of the progress bar */
+        }
+
+        model-viewer{
+            background-color: black;
         }
 
         .reset-container {
